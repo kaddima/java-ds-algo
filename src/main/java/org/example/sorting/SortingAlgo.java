@@ -3,6 +3,35 @@ package org.example.sorting;
 import java.util.Arrays;
 
 public class SortingAlgo {
+  public static <T extends Comparable<T>> void bubbleSort(T[] data){
+    int dataLength = data.length;
+    int bound = dataLength - 1;
+
+    for (int i=0; i < dataLength; i++) {
+      boolean swapped = false;
+      int newBound = 0;
+      /**
+       * in the iteration the highest value is placed to the right or end
+       * of the array. in the second loop, the seconf highest value will be second to
+       * the end of the array..., the ith cell has already stored the sorted items,
+       * there is no need to visit that index and do a comparison
+       * */
+      for (int j = 0; j < bound; j++) {
+        //check if the currentData at index j is greater than the next data
+        if (data[j].compareTo(data[j + 1]) > 0) {
+          T temp = data[j + 1];
+          data[j + 1] = data[j];
+          data[j] = temp;
+          swapped = true;
+          newBound = j;
+        }
+      }
+      bound = newBound;
+      //if no swap occurs that means the array has been sorted
+      if(!swapped) break;
+    }
+  }
+
   public static <T extends Comparable<T>> void insertionSort(T[] data) {
     int dataLength = data.length;
     //start from the second element in the array
@@ -36,7 +65,7 @@ public class SortingAlgo {
 
   public static void main(String[] args) {
     Integer[] data = {20, 45, 93, 67, 10, 97, 52, 88, 33, 92};
-    SortingAlgo.insertionSort(data);
+    SortingAlgo.bubbleSort(data);
     System.out.println(Arrays.toString(data));
   }
 }
