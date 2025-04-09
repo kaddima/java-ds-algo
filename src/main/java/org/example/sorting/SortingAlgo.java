@@ -51,21 +51,43 @@ public class SortingAlgo {
     }
   }
 
-  private static <T> void printData(T[] data) {
-    int a = 0;
-    System.out.print("[");
-
-    for (T d : data) {
-      System.out.print(d);
-      System.out.print(", ");
+  /**
+   * in selection sort, the min/max element in the array is placed in the first
+   * index if we are sorting in descending order and find the second most min or max
+   * and place in the second place and so on
+   */
+  public static <T extends Comparable<T>> void selectionSort(T[] data){
+    int dataLength = data.length;
+    for (int i = 0; i < dataLength; i++){
+      int minIndex = i;
+      /**
+       * start the inner loop from the current + 1 so we dont compare value of same index
+       *
+       */
+      for (int j = minIndex + 1; j < dataLength; j++){
+        // if j < the current minIndex replace the assign the value of j to minIndex
+        if(data[j].compareTo(data[minIndex]) < 0){
+          minIndex = j;
+        }
+      }
+      /**
+       * if the minIndex is was changed from its starting index then swap
+       */
+      if(minIndex != i){
+        T temp = data[i];
+        data[i] = data[minIndex];
+        data[minIndex] = temp;
+      }
     }
-    System.out.print("]");
-    System.out.println();
+  }
+
+  private static <T> void printData(T[] data) {
+    System.out.println(Arrays.toString(data));
   }
 
   public static void main(String[] args) {
     Integer[] data = {20, 45, 93, 67, 10, 97, 52, 88, 33, 92};
-    SortingAlgo.bubbleSort(data);
-    System.out.println(Arrays.toString(data));
+    SortingAlgo.selectionSort(data);
+    printData(data);
   }
 }
