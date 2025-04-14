@@ -60,7 +60,7 @@ public class SinglyLinkedList<T> {
     Node newNode = new Node<>(data, null);
 
     if (!isEmpty()) {
-      if(head.getData().equals(query)){
+      if (head.getData().equals(query)) {
         newNode.setNext(head);
         head = newNode;
         size++;
@@ -81,6 +81,26 @@ public class SinglyLinkedList<T> {
       }
     }
 
+  }
+
+  public void addAfter(T data, T query) {
+    Node newNode = new Node<>(data, null);
+
+    if (!isEmpty()) {
+      Node currentNode = head;
+
+      while (currentNode != null) {
+        if (currentNode.getData().equals(query)) {
+          newNode.setNext(currentNode.getNext());
+          currentNode.setNext(newNode);
+          size++;
+          return;
+        }
+
+        currentNode = currentNode.getNext();
+      }
+
+    }
   }
 
   public void addLast(T data) {
@@ -126,7 +146,8 @@ public class SinglyLinkedList<T> {
     linkedList.addFirst(6);
     linkedList.addBefore(9, 6);
     linkedList.addFirst(86);
-    linkedList.removeFirst();
+    linkedList.addAfter(43, 9);
+    linkedList.addAfter(7, 5);
     System.out.println(linkedList);
   }
 }
