@@ -96,10 +96,8 @@ public class SinglyLinkedList<T> {
           size++;
           return;
         }
-
         currentNode = currentNode.getNext();
       }
-
     }
   }
 
