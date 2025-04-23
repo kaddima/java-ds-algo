@@ -62,4 +62,13 @@ public class CircularLinkedList<T> {
     addFirst(data);
     tail = tail.getNext();
   }
+
+  public T removeFirst(){
+    if(isEmpty()) return null;
+    Node<T> firstNode = tail.getNext();
+    if(firstNode == tail) tail = null;
+    else tail.setNext(firstNode.getNext());
+    size--;
+    return firstNode.getData();
+  }
 }
