@@ -57,4 +57,9 @@ public class CircularLinkedList<T> {
     }
     size++;
   }
+
+  public void addlast(T data){
+    addFirst(data);
+    tail = tail.getNext();
+  }
 }
