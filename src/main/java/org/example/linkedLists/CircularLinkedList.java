@@ -27,9 +27,34 @@ public class CircularLinkedList<T> {
   /**
    * rotates the list one node clockwise
    */
-  public void rotate(){
-    if(tail != null){
+  public void rotate() {
+    if (tail != null) {
       tail = tail.getNext();
     }
+  }
+
+  /**
+   * Adds new node at the front of the circular linked list
+   * @param data - the data to be store in the new node
+   * @apiNote Time Complexity O(1)
+   * @apiNote Space Complexity O(1)
+   */
+  public void addFirst(T data){
+    if(isEmpty()){
+      tail = new Node<>(data, null);
+      tail.setNext(tail);
+    }else{
+      /**
+       * this codes sets the next attribute of the new node to
+       * reference the first node which is gotten ftom tail.next
+       */
+      Node<T> newNode = new Node<>(data,tail.getNext());
+      /**
+       * this will then set the first node by seting the next
+       * attribute of the tail node to the newly created node
+       */
+      tail.setNext(newNode);
+    }
+    size++;
   }
 }
