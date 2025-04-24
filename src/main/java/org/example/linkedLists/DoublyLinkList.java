@@ -62,6 +62,14 @@ public class DoublyLinkList<T> {
     return trailer.getPrev().getData();
   }
 
+  public void addFirst(T data){
+    addBetween(data, header, header.getNext());
+  }
+
+  public void addLast(T data){
+    addBetween(data, trailer.getPrev(), trailer);
+  }
+
   private void addBetween(T data, Node<T> predecessor, Node<T> successor){
     Node<T> newNode = new Node<>(data,predecessor, successor);
     predecessor.setNext(newNode);
