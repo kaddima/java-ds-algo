@@ -70,6 +70,16 @@ public class DoublyLinkList<T> {
     addBetween(data, trailer.getPrev(), trailer);
   }
 
+  public T removeFirst(){
+    if(isEmpty()) return null;
+    return remove(header.getNext());
+  }
+
+  public T removeLast(){
+    if(isEmpty()) return null;
+    return remove(trailer.getPrev());
+  }
+
   private void addBetween(T data, Node<T> predecessor, Node<T> successor){
     Node<T> newNode = new Node<>(data,predecessor, successor);
     predecessor.setNext(newNode);
