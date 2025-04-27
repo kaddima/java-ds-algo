@@ -76,4 +76,13 @@ public class DoublyLinkList<T> {
     successor.setPrev(newNode);
     size++;
   }
+
+  private T remove(Node<T> node){
+    Node<T> predecessor = node.getPrev();
+    Node<T> successor = node.getNext();
+    predecessor.setNext(successor);
+    successor.setPrev(predecessor);
+    size--;
+    return node.getData();
+  }
 }
